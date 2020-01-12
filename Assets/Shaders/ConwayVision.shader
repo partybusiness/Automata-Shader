@@ -44,7 +44,7 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed4 source = round(tex2D(_MainTex, i.uv).rrra);
+				fixed4 source = round(tex2D(_MainTex, i.uv));
 				fixed2 dx = ddx(i.uv);
 				fixed2 dy = ddy(i.uv);
 				fixed4 neighbours =
@@ -57,8 +57,8 @@
 						round(tex2D(_PersistentTex, i.uv + fixed2(-dx.x, dy.y), ddx(0), ddy(0))) +
 						round(tex2D(_PersistentTex, i.uv + fixed2(dx.x, -dy.y), ddx(0), ddy(0))) +
 						round(tex2D(_PersistentTex, i.uv + fixed2(-dx.x, -dy.y), ddx(0), ddy(0)))
-					).rrra;
-				fixed4 live = round(tex2D(_PersistentTex, i.uv, ddx(0), ddy(0)).rrra);
+					);
+				fixed4 live = round(tex2D(_PersistentTex, i.uv, ddx(0), ddy(0)));
 				//fixed4 col = source + tex2D(_PersistentTex, i.uv, ddx(0), ddy(0));// *tex2D(_PersistentTex, i.uv + fixed2(dx.x, 0), ddx(0), ddy(0));
 				fixed4 col = (1-(1- ((neighbours == 3) || (live&&neighbours == 2)))*source);
 					//((neighbours == 3) || (live&&neighbours == 2))*source;
