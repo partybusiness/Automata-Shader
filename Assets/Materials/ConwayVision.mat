@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DisplayMaterial
-  m_Shader: {fileID: 4800000, guid: 739b91b4238da9e458427e942c613529, type: 3}
+  m_Name: ConwayVision
+  m_Shader: {fileID: 4800000, guid: 2248812d2c4dbfd4eb96f81f458bd473, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -54,6 +54,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PersistentTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
@@ -73,6 +77,6 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DeadColour: {r: 0.9558824, g: 0.92815596, b: 0.77314013, a: 1}
+    - _DeadColour: {r: 0.7850346, g: 0.8541642, b: 0.88235295, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _LiveColour: {r: 0.16911763, g: 0.11508918, b: 0.09077638, a: 1}
+    - _LiveColour: {r: 0.18733782, g: 0.22838117, b: 0.25735295, a: 1}
