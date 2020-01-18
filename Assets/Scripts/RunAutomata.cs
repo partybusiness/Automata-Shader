@@ -34,20 +34,21 @@ public class RunAutomata : MonoBehaviour {
         Graphics.Blit(startingTexture, otherTexture, initMaterial, -1);
         targetMaterial.SetTexture("_MainTex", renderTexture);
 
-        StartCoroutine(ProcessAutomata());
+        if (frameRate>0f)
+            StartCoroutine(ProcessAutomata());
     }
 
     IEnumerator ProcessAutomata()
     {
 
-        while (true)
+        while (frameRate>0f)
         {
             yield return new WaitForSeconds(1f / frameRate);
             RunOneStep();
         }
     }
 
-	void RunOneStep () {
+	public void RunOneStep () {
         Graphics.CopyTexture(renderTexture, otherTexture);
         Graphics.Blit(otherTexture, renderTexture, stepMaterial, -1);
 	}
