@@ -2,17 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConwayVision : MonoBehaviour {
+public class ConwayVisionFixedUpdate : MonoBehaviour {
 
     [SerializeField]
     private Material renderMaterial;
 
     [SerializeField]
+    private Material storeSourceMaterial;
+
+    [SerializeField]
     private Material automataMaterial;
-    
+
+    private RenderTexture sourceBuffer;
+
     private RenderTexture viewBuffer;
 
     private RenderTexture viewBuffer2;
+
+    [SerializeField]
+    private int updateFrameCount = 2;
+
+    private int counter = 0;
+
+    private void FixedUpdate()
+    {
+        if (counter%updateFrameCount == 0)
+        {
+            if (sourceBuffer == null)
+                return;
+            //update automata from source buffer
+            Graphics.Blit(sourceBuffer, viewBuffer2, automataMaterial);
+            Graphics.CopyTexture(viewBuffer2, viewBuffer);
+            counter = 0;
+        }
+        counter++;
+    }
 
     //Down side is OnRenderImage is run every Update
     [ExecuteInEditMode]
@@ -26,17 +50,20 @@ public class ConwayVision : MonoBehaviour {
             viewBuffer.useMipMap = false;
             viewBuffer.Create();
 
+            sourceBuffer = new RenderTexture(source.width, source.height, 0);
+            sourceBuffer.filterMode = FilterMode.Point;
+            sourceBuffer.useMipMap = false;
+            sourceBuffer.Create();
+
             viewBuffer2 = new RenderTexture(source.width, source.height, 0);
             viewBuffer2.filterMode = FilterMode.Point;
             viewBuffer2.useMipMap = false;
             
             automataMaterial.SetTexture("_PersistentTex", viewBuffer);
         }
-        //add source to automata and run one frame 
-        Graphics.Blit(source, viewBuffer2, automataMaterial);
+        //store current view in sourceBuffer
+        Graphics.Blit(source, sourceBuffer, storeSourceMaterial);
         //apply display colours to final view
         Graphics.Blit(viewBuffer2, destination, renderMaterial);
-        //copy result back into viewBuffer
-        Graphics.CopyTexture(viewBuffer2, viewBuffer);
     }
 }
