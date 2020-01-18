@@ -20,6 +20,9 @@ public class RunAutomata : MonoBehaviour {
 
     private RenderTexture otherTexture;
 
+    [SerializeField]
+    private float frameRate = 30f;
+
     void Start () {
 
         renderTexture = new RenderTexture(startingTexture.height, startingTexture.width, 0);
@@ -30,8 +33,21 @@ public class RunAutomata : MonoBehaviour {
         Graphics.Blit(startingTexture, renderTexture, initMaterial, -1);
         Graphics.Blit(startingTexture, otherTexture, initMaterial, -1);
         targetMaterial.SetTexture("_MainTex", renderTexture);
+
+        StartCoroutine(ProcessAutomata());
     }
-	void Update () {
+
+    IEnumerator ProcessAutomata()
+    {
+
+        while (true)
+        {
+            yield return new WaitForSeconds(1f / frameRate);
+            RunOneStep();
+        }
+    }
+
+	void RunOneStep () {
         Graphics.CopyTexture(renderTexture, otherTexture);
         Graphics.Blit(otherTexture, renderTexture, stepMaterial, -1);
 	}
