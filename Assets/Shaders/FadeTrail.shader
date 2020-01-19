@@ -1,10 +1,10 @@
-﻿Shader "Unlit/Thre"
+﻿Shader "Unlit/FadeTrail"
 {
-
-//this is just a basic unlit shader with all the fog stuff stripped out, since I usually don't use it
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
+		_PersistentTex("Persistent Texture", 2D) = "white" {}
+		_FadeSpeed("Fade Speed", Float) = 2.0
 	}
 	SubShader
 	{
@@ -33,6 +33,8 @@
 
 			sampler2D _MainTex;
 			float4 _MainTex_ST;
+			sampler2D _PersistentTex;
+			float _FadeSpeed;
 			
 			v2f vert (appdata v)
 			{
@@ -44,8 +46,7 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				// sample the texture
-				fixed4 col = tex2D(_MainTex, i.uv);
+				fixed4 col = lerp(tex2D(_PersistentTex, i.uv), tex2D(_MainTex, i.uv), _FadeSpeed*unity_DeltaTime.r);
 				return col;
 			}
 			ENDCG

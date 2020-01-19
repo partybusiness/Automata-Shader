@@ -484,6 +484,7 @@ GameObject:
   - component: {fileID: 1368609978}
   - component: {fileID: 1368609976}
   - component: {fileID: 1368609980}
+  - component: {fileID: 1368609977}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -498,6 +499,19 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1368609975}
   m_Enabled: 1
+--- !u!114 &1368609977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368609975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c4bc03702e87f04bb4b553bf6221fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderMaterial: {fileID: 2100000, guid: c7e8feec92dfeb34b82abc6556881d04, type: 2}
+  automataMaterial: {fileID: 2100000, guid: 31b17d02faf5bc74e9e7b41714937621, type: 2}
 --- !u!20 &1368609978
 Camera:
   m_ObjectHideFlags: 0
@@ -553,13 +567,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1368609975}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a235c26e2e703094bbce4aab04ef07f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   renderMaterial: {fileID: 2100000, guid: b80eb7bc3fd9a884e8248a29f6f062fc, type: 2}
   storeSourceMaterial: {fileID: 2100000, guid: c8c38d483f58e714e8def805a2af78a3, type: 2}
-  drawSourceMaterial: {fileID: 2100000, guid: c8c38d483f58e714e8def805a2af78a3, type: 2}
   automataMaterial: {fileID: 2100000, guid: 0f80bfca32a6ee842a40407663cb3a7a, type: 2}
   updateFrameCount: 2
